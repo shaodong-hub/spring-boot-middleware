@@ -6,6 +6,7 @@ import com.github.springbootstarterrisk.pojo.MsgProperties;
 import com.github.springbootstarterrisk.pojo.ResponseDO;
 import com.github.springbootstarterrisk.pojo.ReturnDO;
 import lombok.SneakyThrows;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
@@ -29,6 +30,7 @@ import java.util.Map;
  */
 
 @Component
+@ConditionalOnMissingBean
 public class RemoteService {
 
     private RestTemplate restTemplate;

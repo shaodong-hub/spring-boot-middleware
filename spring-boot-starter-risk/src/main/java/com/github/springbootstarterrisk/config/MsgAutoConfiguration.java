@@ -12,6 +12,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,11 +47,12 @@ import java.util.List;
 public class MsgAutoConfiguration {
 
     @Bean
+    @ConditionalOnMissingBean
     public RestTemplate getRestTemplate(MsgProperties msgProperties) {
         // 长连接保持 99 天
         PoolingHttpClientConnectionManager poolingConnectionManager = new PoolingHttpClientConnectionManager(
-            msgProperties.getTimeToLive(),
-            msgProperties.getTimeUnit());
+                msgProperties.getTimeToLive(),
+                msgProperties.getTimeUnit());
 
         // 总连接数
         poolingConnectionManager.setMaxTotal(msgProperties.getMaxSize());

@@ -3,7 +3,7 @@ package com.github.springbootservice.controller;
 import com.github.springbootservice.pojo.RequestDO;
 import com.github.springbootstarterrisk.annotation.MappingProperty;
 import com.github.springbootstarterrisk.annotation.RiskCommand;
-import com.github.springbootstarterrisk.pojo.RemoteResultDO;
+import com.github.springbootstarterrisk.pojo.RiskResultDO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,9 +32,9 @@ public class RequestController {
         }
     )
     @PostMapping("remote")
-    public RequestDO getRemote(@RequestBody RequestDO remoteDO, RemoteResultDO remoteResultDO) {
+    public RequestDO getRemote(@RequestBody RequestDO remoteDO, RiskResultDO riskResultDO) {
         System.out.println("请求数据:" + remoteDO.toString());
-        System.out.println("风控结果:" + remoteResultDO.toString());
+        System.out.println("风控结果:" + riskResultDO.toString());
         return remoteDO;
     }
 

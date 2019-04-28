@@ -4,7 +4,7 @@ package com.github.springbootstarterrisk.aspect;
 import com.github.springbootstarterrisk.annotation.MappingProperty;
 import com.github.springbootstarterrisk.annotation.RiskCommand;
 import com.github.springbootstarterrisk.common.AopUtils;
-import com.github.springbootstarterrisk.pojo.RemoteResultDO;
+import com.github.springbootstarterrisk.pojo.RiskResultDO;
 import com.github.springbootstarterrisk.pojo.ResponseDO;
 import com.github.springbootstarterrisk.pojo.ReturnDO;
 import com.github.springbootstarterrisk.service.RemoteService;
@@ -16,6 +16,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.joor.Reflect;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -36,6 +37,7 @@ import java.util.Map;
 @Slf4j
 @Aspect
 @Component
+@ConditionalOnMissingBean
 public class AspectRemote {
 
     @Resource
@@ -57,8 +59,8 @@ public class AspectRemote {
 
     private void setResult(ProceedingJoinPoint pdj, ReturnDO<ResponseDO> returnDO) {
         Object[] objects = pdj.getArgs();
-        RemoteResultDO remoteResultDO = (RemoteResultDO) objects[1];
-        remoteResultDO.setMessage("success:" + returnDO.getData());
+        RiskResultDO riskResultDO = (RiskResultDO) objects[1];
+        riskResultDO.setMessage("success:" + returnDO.getData());
     }
 
 

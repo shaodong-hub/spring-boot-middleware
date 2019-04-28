@@ -17,7 +17,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RemoteResultDO {
+public class RiskResultDO {
 
     private String message;
 

@@ -4,6 +4,7 @@ import com.github.springbootservice.pojo.RequestDO;
 import com.github.springbootstarterrisk.annotation.MappingProperty;
 import com.github.springbootstarterrisk.annotation.RiskCommand;
 import com.github.springbootstarterrisk.pojo.RiskResultDO;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,14 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class RequestController {
 
     @RiskCommand(
-        requestIndex = 0,
-        resultIndex = 1,
-        mappingProperty = {
-            @MappingProperty(name = "name", value = "userName"),
-            @MappingProperty(name = "pass", value = "userPass")
-        }
+            requestIndex = 0,
+            resultIndex = 1,
+            mappingProperty = {
+                    @MappingProperty(name = "name", value = "userName"),
+                    @MappingProperty(name = "pass", value = "userPass")
+            }
     )
-    @PostMapping("remote")
+    @PostMapping(value = "remote", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public RequestDO getRemote(@RequestBody RequestDO remoteDO, RiskResultDO riskResultDO) {
         System.out.println("请求数据:" + remoteDO.toString());
         System.out.println("风控结果:" + riskResultDO.toString());
